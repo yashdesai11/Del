@@ -1,59 +1,35 @@
-// To parse this JSON data, do
-//
-//     final product = productFromJson(jsonString);
-
-import 'dart:convert';
-
-Product productFromJson(String str) => Product.fromJson(json.decode(str));
-
-String productToJson(Product data) => json.encode(data.toJson());
-
 class Product {
     Product({
-        this.statusCode,
-        this.message,
-        this.data,
-        this.resultCount,
+        @required this.statusCode,
+        @required this.message,
+        @required this.data,
+        @required this.resultCount,
     });
 
     int statusCode;
     String message;
     List<Datum> data;
     int resultCount;
-
-    factory Product.fromJson(Map<String, dynamic> json) => Product(
-        statusCode: json["statusCode"],
-        message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-        resultCount: json["resultCount"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "statusCode": statusCode,
-        "message": message,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-        "resultCount": resultCount,
-    };
 }
 
 class Datum {
     Datum({
-        this.productID,
-        this.productName,
-        this.description,
-        this.category,
-        this.subCategory,
-        this.uom,
-        this.price,
-        this.weight,
-        this.size,
-        this.productRank,
-        this.productImage,
-        this.brand,
-        this.productCode,
-        this.disclosePrice,
-        this.alterPriceText,
-        this.pointsToEarn,
+        @required this.productID,
+        @required this.productName,
+        @required this.description,
+        @required this.category,
+        @required this.subCategory,
+        @required this.uom,
+        @required this.price,
+        @required this.weight,
+        @required this.size,
+        @required this.productRank,
+        @required this.productImage,
+        @required this.brand,
+        @required this.productCode,
+        @required this.disclosePrice,
+        @required this.alterPriceText,
+        @required this.pointsToEarn,
     });
 
     int productID;
@@ -72,84 +48,12 @@ class Datum {
     bool disclosePrice;
     AlterPriceText alterPriceText;
     int pointsToEarn;
-
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        productID: json["product_iD"],
-        productName: json["product_name"],
-        description: descriptionValues.map[json["description"]],
-        category: categoryValues.map[json["category"]],
-        subCategory: json["sub_Category"],
-        uom: json["uom"],
-        price: json["price"],
-        weight: json["weight"],
-        size: json["size"],
-        productRank: json["product_rank"],
-        productImage: json["product_image"],
-        brand: brandValues.map[json["brand"]],
-        productCode: json["product_code"],
-        disclosePrice: json["disclose_price"],
-        alterPriceText: alterPriceTextValues.map[json["alter_price_text"]],
-        pointsToEarn: json["points_to_earn"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "product_iD": productID,
-        "product_name": productName,
-        "description": descriptionValues.reverse[description],
-        "category": categoryValues.reverse[category],
-        "sub_Category": subCategory,
-        "uom": uom,
-        "price": price,
-        "weight": weight,
-        "size": size,
-        "product_rank": productRank,
-        "product_image": productImage,
-        "brand": brandValues.reverse[brand],
-        "product_code": productCode,
-        "disclose_price": disclosePrice,
-        "alter_price_text": alterPriceTextValues.reverse[alterPriceText],
-        "points_to_earn": pointsToEarn,
-    };
 }
 
 enum AlterPriceText { EMPTY, PLEASE_CONTACT_STORE_FOR_QUOTE }
 
-final alterPriceTextValues = EnumValues({
-    "": AlterPriceText.EMPTY,
-    "Please Contact Store For Quote": AlterPriceText.PLEASE_CONTACT_STORE_FOR_QUOTE
-});
-
 enum Brand { EL_KHAYYAT }
-
-final brandValues = EnumValues({
-    "El Khayyat": Brand.EL_KHAYYAT
-});
 
 enum Category { CATEGORY_3, CATEGORY_1, CATEGORY_2 }
 
-final categoryValues = EnumValues({
-    "Category 1": Category.CATEGORY_1,
-    "Category 2": Category.CATEGORY_2,
-    "Category 3": Category.CATEGORY_3
-});
-
 enum Description { TEST, EMPTY }
-
-final descriptionValues = EnumValues({
-    "": Description.EMPTY,
-    "test": Description.TEST
-});
-
-class EnumValues<T> {
-    Map<String, T> map;
-    Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        if (reverseMap == null) {
-            reverseMap = map.map((k, v) => new MapEntry(v, k));
-        }
-        return reverseMap;
-    }
-}
