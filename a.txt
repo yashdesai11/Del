@@ -1,0 +1,6 @@
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDdXN0b21lcklEIjoiMTQwMjI4IiwiVXNlclR5cGUiOiJDIiwiRW1haWwiOiJhbGxhbmNAeW9wbWFpbC5jb20iLCJDb250YWN0Tm8iOiIrOTY2NTY4OTU4OTY1IiwiQ3VzdG9tZXJOYW1lIjoiQWxsYW4gQyIsIm5iZiI6MTY1NTI3NzQxMywiZXhwIjoxNjU1Mjg0NjEzLCJpYXQiOjE2NTUyNzc0MTN9.RKbKaqVylwnjwAmbo3YFx1VC86pCEitg0iXBPPVyhBM"
+
+
+
+{"Product_iD":null,"PageNo":1,"PageSize":10,"Search":null}
+Request Header: Authorization: Bearer{{token which you get while login}}
